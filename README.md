@@ -1,4 +1,4 @@
-# SaaSify - Complete SaaS Landing Page with Authentication
+# SaaSify - Complete SaaS Landing Page with User Onboarding
 
 ## 🚀 Overview
 A modern, full-featured SaaS landing page with complete user authentication system. Built with HTML, Tailwind CSS, Node.js (Express), MongoDB, and Nodemailer. Features signup, login, email notifications, and a personalized dashboard.
