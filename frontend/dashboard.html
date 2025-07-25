@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SaaSify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header with Logout -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">SaaSify Dashboard</div>
+      <div class="flex items-center space-x-4">
+        <span id="userInfo" class="text-gray-700">Welcome!</span>
+        <button id="logoutBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Flash Card -->
+    <div id="flashCard" class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-8 rounded-lg shadow-md">
+      <div class="flex justify-between items-start">
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-blue-800 mb-2">Thank You for Staying With Us!</h3>
+          <p class="text-blue-700">We appreciate your continued support and trust in our platform. Your journey with us means everything!</p>
+        </div>
+        <button id="closeFlashCard" class="ml-4 text-blue-600 hover:text-blue-800 text-xl font-bold">
+          ×
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Stats Card -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold mb-2">Your Stats</h3>
+        <p class="text-gray-600">Track your progress and achievements here.</p>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold mb-2">Quick Actions</h3>
+        <div class="space-y-2">
+          <button class="w-full text-left p-2 hover:bg-gray-100 rounded">View Profile</button>
+          <button class="w-full text-left p-2 hover:bg-gray-100 rounded">Settings</button>
+          <button class="w-full text-left p-2 hover:bg-gray-100 rounded">Help & Support</button>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold mb-2">Recent Activity</h3>
+        <p class="text-gray-600">Your latest activities will appear here.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Get user info from localStorage (set during login)
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    document.getElementById('userInfo').textContent = `Welcome, ${userInfo.username || 'User'}!`;
+
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      // Clear user data
+      localStorage.removeItem('userInfo');
+      // Redirect to home page
+      window.location.href = '/';
+    });
+
+    // Close flash card functionality
+    document.getElementById('closeFlashCard').addEventListener('click', function() {
+      const flashCard = document.getElementById('flashCard');
+      flashCard.style.display = 'none';
+    });
+
+    // Check if user is logged in
+    if (!userInfo.email) {
+      // If no user info, redirect to login
+      window.location.href = '/login.html';
+    }
+  </script>
+</body>
+</html> 
